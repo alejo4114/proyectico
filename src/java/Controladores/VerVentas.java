@@ -50,11 +50,6 @@ public class VerVentas extends HttpServlet {
             
             
             
-            
-            
-            
-            
-            
             if (lis.size() > 0) {
 
                 request.setAttribute("lis", lis);

@@ -4,11 +4,14 @@
     Author     : Juan Manuel
 --%>
 
+<%@page import="VO.Factura"%>
+<%@page import="VO.Libro"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<title>Projects</title>
+	<title>About</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -32,15 +35,42 @@
 			<div class="container">
 				<div class="dynamicContent">
 					<!--content-->
-	                <div class="row">
+	               <h1>Registro de Ventas</h1>
+                    <table>
+                        <tr>
+                            <td>ID</td>
+                            <td>NOMBRE CLIENTE</td>
+                            <td>NOMBRE LIBRO</td>
+                            <td>EMPLEADO</td>
+                            <td>PRECIO</td>
+                            
+                        </tr>
+                        <%
+                            if (request.getAttribute("lis") != null) {
+                                ArrayList<Factura> facturas = (ArrayList<Factura>) request.getAttribute("lis");
 
-	                  
+                                if (facturas != null) {
+                                    for (Factura es: facturas) {
 
+                        %>
+                        <h1></h1>
+                        <tr>  
+                            <td><%=es.getNumFac()%></td>
+                            <td><%=es.getNombreCliente()%></td>
+                            <td><%=es.getNombreLi()%></td>
+                            <td><%=es. getIdEmple()%></td>
+                            <td><%=es.getPrecio()%></td>
+                           
+                        </tr>
 
+                        <%
 
+                                    }
+                                }
+                            }
+                        %>
 
-
-	                </div>
+                    </table>
 				</div>
 			</div>
 		</section>

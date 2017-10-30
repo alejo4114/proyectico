@@ -65,6 +65,7 @@ public class CrearFactura extends HttpServlet {
             CrudFactura cr = new CrudFactura();
             CrudLibro cl = new CrudLibro();
             Libro li = new Libro();
+            resultado=true;
             
             
             li=cl.extraerLibro(nombreLi);
