@@ -38,7 +38,7 @@ public class CrudLibro {
             preparedStatement.setString(4, li.getEditorial());
             preparedStatement.setString(5, li.getEstado());
             preparedStatement.setInt(6, li.getPrecio());
-            
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class CrudLibro {
                     .prepareStatement("update Libro set nombre=?, autor=?, editorial=?, estado=?,precio=?"
                             + "where id_libro=?");
             // Parameters start with 1
-          preparedStatement.setInt(1, li.getId());
+            preparedStatement.setInt(1, li.getId());
             preparedStatement.setString(2, li.getNombre());
             preparedStatement.setString(3, li.getAutor());
             preparedStatement.setString(4, li.getEditorial());
@@ -87,12 +87,12 @@ public class CrudLibro {
             ResultSet rs = statement.executeQuery("select * from Libro");
             while (rs.next()) {
                 Libro li = new Libro();
-               li.setNombre(rs.getString("nombre"));
-               li.setAutor(rs.getString("autor"));
-               li.setId(rs.getInt("id_libro"));
-               li.setEditorial(rs.getString("editorial"));
-               li.setEstado(rs.getString("estado"));
-               li.setPrecio(rs.getInt("precio"));
+                li.setNombre(rs.getString("nombre"));
+                li.setAutor(rs.getString("autor"));
+                li.setId(rs.getInt("id_libro"));
+                li.setEditorial(rs.getString("editorial"));
+                li.setEstado(rs.getString("estado"));
+                li.setPrecio(rs.getInt("precio"));
                 users.add(li);
             }
         } catch (SQLException e) {
@@ -111,12 +111,12 @@ public class CrudLibro {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-               li.setNombre(rs.getString("nombre"));
-               li.setAutor(rs.getString("autor"));
-               li.setId(rs.getInt("id_libro"));
-               li.setEditorial(rs.getString("editorial"));
-               li.setEstado(rs.getString("estado"));
-               li.setPrecio(rs.getInt("precio"));
+                li.setNombre(rs.getString("nombre"));
+                li.setAutor(rs.getString("autor"));
+                li.setId(rs.getInt("id_libro"));
+                li.setEditorial(rs.getString("editorial"));
+                li.setEstado(rs.getString("estado"));
+                li.setPrecio(rs.getInt("precio"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,5 +124,78 @@ public class CrudLibro {
 
         return li;
     }
+
+    public List<Libro> ordenarAutor() {
+        List<Libro> users = new ArrayList<Libro>();
+        try {
+            System.out.println("LLegue hasta aca");
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from Libro order by autor");
+            while (rs.next()) {
+                Libro li = new Libro();
+                li.setNombre(rs.getString("nombre"));
+                li.setAutor(rs.getString("autor"));
+                li.setId(rs.getInt("id_libro"));
+                li.setEditorial(rs.getString("editorial"));
+                li.setEstado(rs.getString("estado"));
+                li.setPrecio(rs.getInt("precio"));
+                users.add(li);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+    
+    public List<Libro> librosNuevos() {
+        List<Libro> users = new ArrayList<Libro>();
+        try {
+            System.out.println("LLegue hasta acaaaaa");
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from Libro where estado='nuevo'");
+            while (rs.next()) {
+                Libro li = new Libro();
+                li.setNombre(rs.getString("nombre"));
+                li.setAutor(rs.getString("autor"));
+                li.setId(rs.getInt("id_libro"));
+                li.setEditorial(rs.getString("editorial"));
+                li.setEstado(rs.getString("estado"));
+                li.setPrecio(rs.getInt("precio"));
+                users.add(li);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+    
+     public List<Libro> librosUsados() {
+        List<Libro> users = new ArrayList<Libro>();
+        try {
+            System.out.println("LLegue hasta acaaaaa");
+            Statement statement = connection.createStatement();
+
+            ResultSet rs = statement.executeQuery("select * from Libro where estado='usado'");
+            while (rs.next()) {
+                Libro li = new Libro();
+                li.setNombre(rs.getString("nombre"));
+                li.setAutor(rs.getString("autor"));
+                li.setId(rs.getInt("id_libro"));
+                li.setEditorial(rs.getString("editorial"));
+                li.setEstado(rs.getString("estado"));
+                li.setPrecio(rs.getInt("precio"));
+                users.add(li);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
 
 }
